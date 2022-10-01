@@ -1,0 +1,15 @@
+FROM node:latest
+
+WORKDIR /src
+
+COPY ["package.json", "package-lock.json*", "./"]
+
+RUN npm install --silent
+
+COPY . .
+
+CMD [ "node", "index.js" ]
+
+#docker build -t node-app .
+#docker run -p 5000:5000 node-app
+
