@@ -13,11 +13,15 @@ const AiStatus = () => {
             const { data } = await api.fetchVideos()
             if (data !== undefined) {
                 console.log(data)
-                setVideoData(data)
+                setVideoData(data.reverse())
             }
         }
         fetchData()
     }, [refresh])
+
+    function isWhatPercentOf(numA, numB) {
+        return (numA / numB) * 100;
+    }
 
 
     function deleteVideoFromServer(id) {
@@ -33,7 +37,7 @@ const AiStatus = () => {
                     <button onClick={() => setRefresh(!refresh)} className=" mt-1 bg-slate-800 mb-1 p-1 rounded-md">Refresh</button>
                     {videoData.map((video) => (
                          <div className=" w-full bg-slate-800 rounded-md">
-                            {video["status"] !== "Rendering" && video["status"] !== "Finished"  && 
+                            {video["status"] !== "Rendering" && 
                                 <div className=" w-full flex justify-end gap-5 p-2 ">
                                     {/*<button className=" bg-slate-600 p-1 rounded-md text-white"> Edit </button>*/}
                                     <button onClick={() => deleteVideoFromServer(video["_id"])} className=" bg-slate-600 p-1 rounded-md text-white"> Delete </button>
@@ -44,10 +48,15 @@ const AiStatus = () => {
                                     <label className=" flex gap-2 p-2 text-sm ">Title:  <h1> {video["title"]}</h1></label>
                                     <label className=" flex gap-2 p-2 text-sm ">Steps:  <h1> {video["steps"]}</h1></label>
                                     <label className=" flex gap-2 p-2 text-sm ">Styles:  <h1> {video["styles"]}</h1></label>
+                                    <label className=" flex gap-2 p-2 text-sm ">Negative Styles:  <h1> {video["negative_styles"]}</h1></label>
+                                    <label className=" flex gap-2 p-2 text-sm ">Captions:  <h1>  {video["captions"] !== false && <h1> on </h1>} {video["captions"] === false && <h1> off </h1>} </h1></label>
+                                    <label className=" flex gap-2 p-2 text-sm ">Fullscreen:  <h1>  {video["fullscreen"] !== false && <h1> on </h1>} {video["fullscreen"] === false && <h1> off </h1>} </h1></label>
+                                    <label className=" flex gap-2 p-2 text-sm ">Fix Faces:  <h1>  {video["fix_faces"] !== false && <h1> on </h1>} {video["fix_faces"] === false && <h1> off </h1>} </h1></label>
+                                    <label className=" flex gap-2 p-2 text-sm ">Sampler:  <h1> {video["sampler"]}</h1></label>
                                     <label className=" flex gap-2 p-2 text-sm ">Category:  <h1> {video["categoryId"]}</h1></label>
                                     <label className=" flex gap-2 p-2 text-sm ">Tags:  <h1> {video["tags"]}</h1></label>
                                     {video["status"] === "Rendering"  && 
-                                        <h1 className=" pl-[41%] items-center"> Progress: {video["progress"]}%</h1>
+                                        <h1 className=" pl-[41%] items-center"> Progress: {isWhatPercentOf(video["progress"]["current"],video["progress"]["total"] )}%</h1>
                                     }
                                 </div>
                                 {/* <div className=" flex flex-col items-center min-h-[200px] h-auto bg-slate-700 w-[50%]">

@@ -16,7 +16,7 @@ export const getVideos = async (req, res) => {
 }
 
 export const AddVideo = async (req, res) => {
-    console.log("here")
+    console.log(req.body)
     const video = req.body;
     const newVideo = new VideoModel(video)
     try {

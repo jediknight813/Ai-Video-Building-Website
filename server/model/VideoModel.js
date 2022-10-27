@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 
 const VideoSchema = mongoose.Schema({
     title: String,
-    progess: Number,
     thumbnail: String,
     youtube_url: String,
     styles: String,
@@ -12,7 +11,13 @@ const VideoSchema = mongoose.Schema({
     categoryId: Number,
     status: String,
     captions: Boolean,
-    tags: String    
+    progress: Object,
+    tags: String,
+    
+    fullscreen: Boolean,
+    fix_faces: Boolean,
+    sampler: String,
+    negative_styles: String
 })
 
 

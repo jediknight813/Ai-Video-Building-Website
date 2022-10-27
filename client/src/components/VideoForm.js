@@ -19,7 +19,7 @@ const VideoForm = () => {
     }, [])
 
 
-    const [VideoFromData, setVideoFromData] = useState({"youtube_url": "", "status": "Ready", "styles": ", by gregory manchess, digital illustration, trending on artstation hq, elegant.", "video_disc": "50", "steps": 50, "length": "full", "categoryId": 10, "captions": false, "tags": "", "thumbnail": "", "progress": 0, "title": "" })
+    const [VideoFromData, setVideoFromData] = useState({"youtube_url": "", "status": "Ready", "styles": ", stunning, disney concept art, pixar concept art, bloom, medium shot, dramatic lighting, in the style of studio ghibli, JC Leyendecker, Ilya Kuvshinov, Rossdraws, Conrad Roset", "video_disc": "50", "steps": 50, "length": "full", "categoryId": 10, "captions": false, "tags": "auto", "thumbnail": "", "progress": {"current": 0, "total": 0}, "title": "", "fullscreen": false, "fix_faces": false, "sampler": "k_euler_a", "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands"})
 
     function submit_form() {
         //console.log(dispatch(testServerLocal()))
@@ -31,7 +31,7 @@ const VideoForm = () => {
             alert("add a tag")
             return
         }
-        setVideoFromData({"youtube_url": "", "status": "Ready", "styles": ", by gregory manchess, digital illustration, trending on artstation hq, elegant.", "video_disc": "50", "steps": 50, "length": "full", "categoryId": 10, "captions": false, "tags": "", "thumbnail": "", "progress": 0, "title": "" })
+        setVideoFromData({"youtube_url": "", "status": "Ready", "styles": ", stunning, disney concept art, pixar concept art, bloom, medium shot, dramatic lighting, in the style of studio ghibli, JC Leyendecker, Ilya Kuvshinov, Rossdraws, Conrad Roset", "video_disc": "50", "steps": 50, "length": "full", "categoryId": 10, "captions": false, "tags": "auto", "thumbnail": "", "progress": {"current": 0, "total": 0}, "title": "", "fullscreen": false, "fix_faces": false, "sampler": "k_euler_a", "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands"})
         
         api.createVideo(VideoFromData)
     }
@@ -41,11 +41,41 @@ const VideoForm = () => {
         <div className=" lg:w-[500px] bg-slate-800 flex flex-col items-center text-white font-serif rounded-md h-auto mb-5 mt-5 gap-5 w-full">
             <h1 className=" text-2xl mt-5"> video form </h1>
             <form className=" lg:w-[70%] w-90 flex flex-col gap-5">
-                <label>Video Title: <input className=" form_buttons" placeholder="youtube_url" value={VideoFromData.title} onChange={(e) => setVideoFromData({ ...VideoFromData, title: e.target.value })} /> </label>
+                <label>Video Title: <input className=" form_buttons" placeholder="video title" value={VideoFromData.title} onChange={(e) => setVideoFromData({ ...VideoFromData, title: e.target.value })} /> </label>
                 <label>Youtube url: <input className=" form_buttons" placeholder="youtube_url" value={VideoFromData.youtube_url} onChange={(e) => setVideoFromData({ ...VideoFromData, youtube_url: e.target.value })} /> </label>
                 <label>Styles: <input className=" form_buttons" placeholder="digital artwork.." value={VideoFromData.styles} onChange={(e) => setVideoFromData({ ...VideoFromData, styles: e.target.value })} /> </label>
+                <label>Negative Styles: <input className=" form_buttons" placeholder="bad artwork.." value={VideoFromData.negative_styles} onChange={(e) => setVideoFromData({ ...VideoFromData, negative_styles: e.target.value })} /> </label>
                 <label>length: <input className=" form_buttons" placeholder="full / 23(secs)" value={VideoFromData.length} onChange={(e) => setVideoFromData({ ...VideoFromData, length: e.target.value })} /> </label>
-                <label>Captions: <input type={"checkbox"} checked={VideoForm.captions} className=" form_buttons" value={VideoFromData.captions} onChange={(e) => setVideoFromData({ ...VideoFromData, captions: !VideoFromData.captions})} /> </label>
+                
+                <label> Captions:
+                    <select className=" form_buttons" value={VideoFromData.captions} onChange={(e) => setVideoFromData({ ...VideoFromData, captions: e.target.value })}>
+                        <option value="true">on</option>
+                        <option value="false">off</option>
+                    </select>
+                </label>
+
+                <label> Fix Faces:
+                    <select className=" form_buttons" value={VideoFromData.fix_faces} onChange={(e) => setVideoFromData({ ...VideoFromData, fix_faces: e.target.value })}>
+                        <option value="true">on</option>
+                        <option value="false">off</option>
+                    </select>
+                </label>
+
+                <label> Fullscreen:
+                    <select className=" form_buttons" value={VideoFromData.fullscreen} onChange={(e) => setVideoFromData({ ...VideoFromData, fullscreen: e.target.value })}>
+                        <option value="true">on</option>
+                        <option value="false">off</option>
+                    </select>
+                </label>
+
+
+                <label> Sampler:
+                    <select className=" form_buttons" value={VideoFromData.sampler} onChange={(e) => setVideoFromData({ ...VideoFromData, sampler: e.target.value })}>
+                        <option value="k_euler_a">k_euler_a</option>
+                    </select>
+                </label>
+
+
                 <label>Steps: <input type={"number"} className=" form_buttons" placeholder="50" value={VideoFromData.steps} onChange={(e) => setVideoFromData({ ...VideoFromData, steps: e.target.value })} /> </label>
                 <label>Tags: <input className=" form_buttons" placeholder="ai, music video, ...." value={VideoFromData.tags} onChange={(e) => setVideoFromData({ ...VideoFromData, tags: e.target.value })}  /> </label>
                 <label> Category:
