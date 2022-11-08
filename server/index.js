@@ -6,6 +6,8 @@ import bodyParser from "body-parser";
 import dotenv from 'dotenv';
 import videoRoutes from './routes/videoRoutes.js'
 
+import VideoPlaylistJob from './routes/videoPlaylistRoutes.js';
+
 
 const app = express();
 dotenv.config()
@@ -15,6 +17,8 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true}));
 app.use(cors());
 
 app.use('/video', videoRoutes)
+
+app.use('/VideoPlaylist', VideoPlaylistJob)
 
 
 app.get('/', (req, res) => {

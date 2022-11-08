@@ -12,7 +12,7 @@ const AiStatus = () => {
         const fetchData = async () => {
             const { data } = await api.fetchVideos()
             if (data !== undefined) {
-                console.log(data)
+                //console.log(data)
                 setVideoData(data.reverse())
             }
         }

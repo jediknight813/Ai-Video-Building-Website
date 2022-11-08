@@ -12,14 +12,14 @@ const VideoForm = () => {
         const fetchData = async () => {
             const { data } = await api.fetchVideos()
             if (data !== undefined) {
-                console.log(data)
+                //console.log(data)
             }
         }
         fetchData()
     }, [])
 
 
-    const [VideoFromData, setVideoFromData] = useState({"youtube_url": "", "status": "Ready", "styles": ", stunning, disney concept art, pixar concept art, bloom, medium shot, dramatic lighting, in the style of studio ghibli, JC Leyendecker, Ilya Kuvshinov, Rossdraws, Conrad Roset", "video_disc": "50", "steps": 50, "length": "full", "categoryId": 10, "captions": false, "tags": "auto", "thumbnail": "", "progress": {"current": 0, "total": 0}, "title": "", "fullscreen": false, "fix_faces": false, "sampler": "k_euler_a", "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands"})
+    const [VideoFromData, setVideoFromData] = useState({"youtube_url": "", "status": "Ready", "styles": ", stunning, disney concept art, pixar concept art, bloom, medium shot, dramatic lighting, in the style of studio ghibli, JC Leyendecker, Ilya Kuvshinov, Rossdraws, Conrad Roset", "thumbnail_style": ", album cover", "video_disc": "50", "steps": 50, "length": "full", "categoryId": 10, "captions": false, "tags": "auto", "thumbnail": "", "progress": {"current": 0, "total": 0}, "title": "", "fullscreen": false, "fix_faces": false, "sampler": "k_euler_a", "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands", "job_type": "video"})
 
     function submit_form() {
         //console.log(dispatch(testServerLocal()))
@@ -31,7 +31,7 @@ const VideoForm = () => {
             alert("add a tag")
             return
         }
-        setVideoFromData({"youtube_url": "", "status": "Ready", "styles": ", stunning, disney concept art, pixar concept art, bloom, medium shot, dramatic lighting, in the style of studio ghibli, JC Leyendecker, Ilya Kuvshinov, Rossdraws, Conrad Roset", "video_disc": "50", "steps": 50, "length": "full", "categoryId": 10, "captions": false, "tags": "auto", "thumbnail": "", "progress": {"current": 0, "total": 0}, "title": "", "fullscreen": false, "fix_faces": false, "sampler": "k_euler_a", "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands"})
+        setVideoFromData({"youtube_url": "", "status": "Ready", "styles": "stunning, disney concept art, pixar concept art, bloom, medium shot, dramatic lighting, in the style of studio ghibli, JC Leyendecker, Ilya Kuvshinov, Rossdraws, Conrad Roset","thumbnail_style": ", album cover", "video_disc": "50", "steps": 50, "length": "full", "categoryId": 10, "captions": false, "tags": "auto", "thumbnail": "", "progress": {"current": 0, "total": 0}, "title": "", "fullscreen": false, "fix_faces": false, "sampler": "k_euler_a", "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands", "job_type": "video"})
         
         api.createVideo(VideoFromData)
     }
@@ -39,11 +39,12 @@ const VideoForm = () => {
 
     return (
         <div className=" lg:w-[500px] bg-slate-800 flex flex-col items-center text-white font-serif rounded-md h-auto mb-5 mt-5 gap-5 w-full">
-            <h1 className=" text-2xl mt-5"> video form </h1>
+            <h1 className=" text-2xl mt-5"> create video </h1>
             <form className=" lg:w-[70%] w-90 flex flex-col gap-5">
                 <label>Video Title: <input className=" form_buttons" placeholder="video title" value={VideoFromData.title} onChange={(e) => setVideoFromData({ ...VideoFromData, title: e.target.value })} /> </label>
                 <label>Youtube url: <input className=" form_buttons" placeholder="youtube_url" value={VideoFromData.youtube_url} onChange={(e) => setVideoFromData({ ...VideoFromData, youtube_url: e.target.value })} /> </label>
                 <label>Styles: <input className=" form_buttons" placeholder="digital artwork.." value={VideoFromData.styles} onChange={(e) => setVideoFromData({ ...VideoFromData, styles: e.target.value })} /> </label>
+                <label>Thumbnail Style: <input className=" form_buttons" placeholder="digital artwork.." value={VideoFromData.thumbnail_style} onChange={(e) => setVideoFromData({ ...VideoFromData, thumbnail_style: e.target.value })} /> </label>
                 <label>Negative Styles: <input className=" form_buttons" placeholder="bad artwork.." value={VideoFromData.negative_styles} onChange={(e) => setVideoFromData({ ...VideoFromData, negative_styles: e.target.value })} /> </label>
                 <label>length: <input className=" form_buttons" placeholder="full / 23(secs)" value={VideoFromData.length} onChange={(e) => setVideoFromData({ ...VideoFromData, length: e.target.value })} /> </label>
                 
@@ -97,7 +98,7 @@ const VideoForm = () => {
                     </select>
                 </label>
             </form>
-            <button onClick={() => submit_form()} className=" mt-5 bg-slate-600 mb-5 p-1 rounded-md"> Submit </button>
+            <button onClick={() => submit_form()} className=" mt-5 bg-slate-600 mb-5 p-1 rounded-md"> Add Job </button>
         </div>
     )
 }

@@ -6,6 +6,7 @@ const VideoSchema = mongoose.Schema({
     thumbnail: String,
     youtube_url: String,
     styles: String,
+    thumbnail_style: String,
     steps: Number,
     length: String,
     categoryId: Number,
@@ -13,11 +14,12 @@ const VideoSchema = mongoose.Schema({
     captions: Boolean,
     progress: Object,
     tags: String,
-    
     fullscreen: Boolean,
     fix_faces: Boolean,
     sampler: String,
-    negative_styles: String
+    negative_styles: String,
+    job_type: String,
+    video_description: String
 })
 
 

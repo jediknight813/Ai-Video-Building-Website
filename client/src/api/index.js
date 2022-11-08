@@ -8,3 +8,5 @@ export const fetchVideos = () => API.get("/video");
 export const createVideo = (newVideo) => API.post("/video/newVideo", newVideo);
 export const deleteVideo = (id) => API.delete(`${"video"}/${id}`);
 
+
+export const createVideoPlaylistJob = (newVideoPlaylistJob) => API.post("/VideoPlaylist/newVideoPlaylistJob", newVideoPlaylistJob);
