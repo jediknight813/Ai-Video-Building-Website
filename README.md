@@ -15,6 +15,7 @@ desktop:
 
 # Ui for making videos from a playlist.
 <img width="1518" alt="Screen Shot 2022-11-08 at 9 18 23 AM" src="https://user-images.githubusercontent.com/17935336/200603887-4c9852cf-3423-40c2-9654-32254e66674b.png">
+<img width="1518" alt="Screen Shot 2022-11-08 at 9 23 43 AM" src="https://user-images.githubusercontent.com/17935336/200605290-37fcaae8-395e-4da5-8908-4d949db2c7be.png">
 
 
 mobile:
