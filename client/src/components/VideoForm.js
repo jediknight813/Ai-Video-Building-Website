@@ -6,6 +6,11 @@ import * as api from '../api/index.js'
 //import * as api from '../api/index.js'
 
 
+// image_zoom: Boolean,
+// image_zoom_amount: Number,
+// skip_videoplaylist_job: Boolean
+
+
 const VideoForm = () => {
 
     useEffect(() => {   
@@ -19,7 +24,7 @@ const VideoForm = () => {
     }, [])
 
 
-    const [VideoFromData, setVideoFromData] = useState({"youtube_url": "", "status": "Ready", "styles": ", stunning, disney concept art, pixar concept art, bloom, medium shot, dramatic lighting, in the style of studio ghibli, JC Leyendecker, Ilya Kuvshinov, Rossdraws, Conrad Roset", "thumbnail_style": ", album cover", "video_disc": "50", "steps": 50, "length": "full", "categoryId": 10, "captions": false, "tags": "auto", "thumbnail": "", "progress": {"current": 0, "total": 0}, "title": "", "fullscreen": false, "fix_faces": false, "sampler": "k_euler_a", "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands", "job_type": "video"})
+    const [VideoFromData, setVideoFromData] = useState({"youtube_url": "", "status": "Ready", "styles": ", stunning, disney concept art, pixar concept art, bloom, medium shot, dramatic lighting, in the style of studio ghibli, JC Leyendecker, Ilya Kuvshinov, Rossdraws, Conrad Roset", "thumbnail_style": ", album cover", "video_disc": "50", "steps": 50, "length": "full", "categoryId": 10, "captions": false, "tags": "auto", "thumbnail": "", "progress": {"current": 0, "total": 0}, "title": "", "fullscreen": true, "fix_faces": false, "sampler": "k_euler_a", "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands", "job_type": "video", "image_zoom": true, "image_zoom_amount": 0.007, "skip_videoplaylist_job": true})
 
     function submit_form() {
         //console.log(dispatch(testServerLocal()))
@@ -31,7 +36,7 @@ const VideoForm = () => {
             alert("add a tag")
             return
         }
-        setVideoFromData({"youtube_url": "", "status": "Ready", "styles": "stunning, disney concept art, pixar concept art, bloom, medium shot, dramatic lighting, in the style of studio ghibli, JC Leyendecker, Ilya Kuvshinov, Rossdraws, Conrad Roset","thumbnail_style": ", album cover", "video_disc": "50", "steps": 50, "length": "full", "categoryId": 10, "captions": false, "tags": "auto", "thumbnail": "", "progress": {"current": 0, "total": 0}, "title": "", "fullscreen": false, "fix_faces": false, "sampler": "k_euler_a", "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands", "job_type": "video"})
+        setVideoFromData({"youtube_url": "", "status": "Ready", "styles": "stunning, disney concept art, pixar concept art, bloom, medium shot, dramatic lighting, in the style of studio ghibli, JC Leyendecker, Ilya Kuvshinov, Rossdraws, Conrad Roset","thumbnail_style": ", album cover", "video_disc": "50", "steps": 50, "length": "full", "categoryId": 10, "captions": false, "tags": "auto", "thumbnail": "", "progress": {"current": 0, "total": 0}, "title": "", "fullscreen": true, "fix_faces": false, "sampler": "k_euler_a", "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands", "job_type": "video", "image_zoom": true, "image_zoom_amount": 0.007, "skip_videoplaylist_job": true})
         
         api.createVideo(VideoFromData)
     }
@@ -97,6 +102,23 @@ const VideoForm = () => {
                         <option value="28">	Science & Technology</option>
                     </select>
                 </label>
+
+                <label> Image Zoom:
+                    <select className=" form_buttons" value={VideoFromData.image_zoom} onChange={(e) => setVideoFromData({ ...VideoFromData, image_zoom: e.target.value })}>
+                        <option value="true">on</option>
+                        <option value="false">off</option>
+                    </select>
+                </label>
+
+                <label>Zoom Amount: <input type={"number"} className=" form_buttons" placeholder="50" value={VideoFromData.image_zoom_amount} onChange={(e) => setVideoFromData({ ...VideoFromData, image_zoom_amount: e.target.value })} /> </label>
+
+                <label> skip videoplaylist job:
+                    <select className=" form_buttons" value={VideoFromData.skip_videoplaylist_job} onChange={(e) => setVideoFromData({ ...VideoFromData, skip_videoplaylist_job: e.target.value })}>
+                        <option value="true">on</option>
+                        <option value="false">off</option>
+                    </select>
+                </label>
+
             </form>
             <button onClick={() => submit_form()} className=" mt-5 bg-slate-600 mb-5 p-1 rounded-md"> Add Job </button>
         </div>

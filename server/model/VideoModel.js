@@ -19,7 +19,10 @@ const VideoSchema = mongoose.Schema({
     sampler: String,
     negative_styles: String,
     job_type: String,
-    video_description: String
+    video_description: String,
+    image_zoom: Boolean,
+    image_zoom_amount: Number,
+    skip_videoplaylist_job: Boolean
 })
 
 

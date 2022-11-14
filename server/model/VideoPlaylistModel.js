@@ -20,6 +20,9 @@ const VideoPlaylistSchema = mongoose.Schema({
     days_to_upload: Array,
     job_type: String,
     finished_videos: Array,
+
+    image_zoom: Boolean,
+    image_zoom_amount: Number,
 })
 
 

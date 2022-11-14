@@ -55,6 +55,7 @@ const AiStatus = () => {
                                     <label className=" flex gap-2 p-2 text-sm ">Sampler:  <h1> {video["sampler"]}</h1></label>
                                     <label className=" flex gap-2 p-2 text-sm ">Category:  <h1> {video["categoryId"]}</h1></label>
                                     <label className=" flex gap-2 p-2 text-sm ">Tags:  <h1> {video["tags"]}</h1></label>
+                                    <label className=" flex gap-2 p-2 text-sm ">Image Zoom:  <h1>  {video["image_zoom"] !== false && <h1> on </h1>} {video["image_zoom"] === false && <h1> off </h1>} </h1></label>
                                     {video["status"] === "Rendering"  && 
                                         <h1 className=" pl-[41%] items-center"> Progress: {isWhatPercentOf(video["progress"]["current"],video["progress"]["total"] )}%</h1>
                                     }

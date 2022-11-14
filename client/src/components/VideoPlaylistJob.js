@@ -31,7 +31,7 @@ const VideoPlaylistJob = () => {
 
     const [VideoPlaylistData, setVideoPlaylistData] = useState({
         "youtube_playlist_url": "",
-        "video_description": "Ai used for this video: stable horde.\nSong credits:\nThis is an Ai interpreted version of the song ",
+        "video_description": "Stable diffusion was used to generate the images.\n\nSong credits:\n\nThis is an Ai interpreted version of the song ",
         "styles": ", stunning, disney concept art, pixar concept art, bloom, medium shot, dramatic lighting, in the style of studio ghibli, JC Leyendecker, Ilya Kuvshinov, Rossdraws, Conrad Roset",
         "thumbnail_style": ", album cover",
         "steps": 50,
@@ -39,12 +39,14 @@ const VideoPlaylistJob = () => {
         "categoryId": 10,
         "captions": false,
         "tags": "AI generated images, music video, stable diffusion, songs but every lyric is an ai generated image, every lyric is an ai generated image",
-        "fullscreen": false,
+        "fullscreen": true,
         "fix_faces": false,
         "sampler": "k_euler_a",
         "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands",
         "days_to_upload": days_to_upload_videos,
         "job_type": "videoPlaylist",
+        "image_zoom": true, 
+        "image_zoom_amount": 0.007,
         })
 
     function submit_form() {
@@ -67,20 +69,22 @@ const VideoPlaylistJob = () => {
         
         setVideoPlaylistData({
             "youtube_playlist_url": "",
-            "video_description": "Ai used for this video: stable horde.\nSong credits:\nThis is an Ai interpreted version of the song ",
+            "video_description": "Stable diffusion was used to generate the images.\n\nSong credits:\n\nThis is an Ai interpreted version of the song ",
             "styles": ", stunning, disney concept art, pixar concept art, bloom, medium shot, dramatic lighting, in the style of studio ghibli, JC Leyendecker, Ilya Kuvshinov, Rossdraws, Conrad Roset",
             "thumbnail_style": ", album cover",
-            "steps": 50,
+            "steps": 30,
             "length": "full",
             "categoryId": 10,
             "captions": false,
             "tags": "AI generated images, music video, stable diffusion, songs but every lyric is an ai generated image, every lyric is an ai generated image",
-            "fullscreen": false,
+            "fullscreen": true,
             "fix_faces": false,
             "sampler": "k_euler_a",
             "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands",
             "days_to_upload": days_to_upload_videos,
             "job_type": "videoPlaylist",
+            "image_zoom": true, 
+            "image_zoom_amount": 0.007,
             })
         
         api.createVideoPlaylistJob(VideoPlaylistData)
@@ -146,6 +150,16 @@ const VideoPlaylistJob = () => {
                         <option value="28">	Science & Technology</option>
                     </select>
                 </label>
+                
+                <label> Image Zoom:
+                    <select className=" form_buttons" value={VideoPlaylistData.image_zoom} onChange={(e) => setVideoPlaylistData({ ...VideoPlaylistData, image_zoom: e.target.value })}>
+                        <option value="true">on</option>
+                        <option value="false">off</option>
+                    </select>
+                </label>
+
+                <label>Zoom Amount: <input type={"number"} className=" form_buttons" placeholder="50" value={VideoPlaylistData.image_zoom_amount} onChange={(e) => setVideoPlaylistData({ ...VideoPlaylistData, image_zoom_amount: e.target.value })} /> </label>
+
 
                 <label>Days To Upload</label>
                 <select className="  text-black" multiple={true} value={days_to_upload_videos} onChange={(e)=> {handleSelect(e.target.selectedOptions)}}>
