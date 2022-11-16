@@ -42,6 +42,7 @@ const VideoForm = () => {
         "sampler": "k_euler_a",
         "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands",
         "job_type": "video",
+        "video_description": "Stable diffusion was used to generate the images.\n\nSong credits:\n\nThis is an Ai interpreted version of the song ",
         "image_zoom": true,
         "image_zoom_amount": 0.007,
         "skip_videoplaylist_job": true,
@@ -78,6 +79,7 @@ const VideoForm = () => {
             "sampler": "k_euler_a",
             "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands",
             "job_type": "video",
+            "video_description": "Stable diffusion was used to generate the images.\n\nSong credits:\n\nThis is an Ai interpreted version of the song ",
             "image_zoom": true,
             "image_zoom_amount": 0.007,
             "skip_videoplaylist_job": true,
@@ -95,6 +97,7 @@ const VideoForm = () => {
             <form className=" lg:w-[70%] w-90 flex flex-col gap-5">
                 <label>Video Title: <input className=" form_buttons" placeholder="video title" value={VideoFromData.title} onChange={(e) => setVideoFromData({ ...VideoFromData, title: e.target.value })} /> </label>
                 <label>Youtube url: <input className=" form_buttons" placeholder="youtube_url" value={VideoFromData.youtube_url} onChange={(e) => setVideoFromData({ ...VideoFromData, youtube_url: e.target.value })} /> </label>
+                <label>Video Description <input className=" form_buttons" placeholder="hello world" value={VideoFromData.video_description} onChange={(e) => setVideoFromData({ ...VideoFromData, video_description: e.target.value })} /> </label>
                 <label>Styles: <input className=" form_buttons" placeholder="digital artwork.." value={VideoFromData.styles} onChange={(e) => setVideoFromData({ ...VideoFromData, styles: e.target.value })} /> </label>
                 <label>Thumbnail Style: <input className=" form_buttons" placeholder="digital artwork.." value={VideoFromData.thumbnail_style} onChange={(e) => setVideoFromData({ ...VideoFromData, thumbnail_style: e.target.value })} /> </label>
                 <label>Negative Styles: <input className=" form_buttons" placeholder="bad artwork.." value={VideoFromData.negative_styles} onChange={(e) => setVideoFromData({ ...VideoFromData, negative_styles: e.target.value })} /> </label>
