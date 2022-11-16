@@ -22,7 +22,9 @@ const VideoSchema = mongoose.Schema({
     video_description: String,
     image_zoom: Boolean,
     image_zoom_amount: Number,
-    skip_videoplaylist_job: Boolean
+    skip_videoplaylist_job: Boolean,
+    model: String,
+    use_trusted_workers: Boolean
 })
 
 

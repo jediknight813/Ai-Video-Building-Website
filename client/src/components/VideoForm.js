@@ -24,7 +24,31 @@ const VideoForm = () => {
     }, [])
 
 
-    const [VideoFromData, setVideoFromData] = useState({"youtube_url": "", "status": "Ready", "styles": ", stunning, disney concept art, pixar concept art, bloom, medium shot, dramatic lighting, in the style of studio ghibli, JC Leyendecker, Ilya Kuvshinov, Rossdraws, Conrad Roset", "thumbnail_style": ", album cover", "video_disc": "50", "steps": 50, "length": "full", "categoryId": 10, "captions": false, "tags": "auto", "thumbnail": "", "progress": {"current": 0, "total": 0}, "title": "", "fullscreen": true, "fix_faces": false, "sampler": "k_euler_a", "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands", "job_type": "video", "image_zoom": true, "image_zoom_amount": 0.007, "skip_videoplaylist_job": true})
+    const [VideoFromData, setVideoFromData] = useState({"youtube_url": "",
+        "status": "Ready",
+        "styles": "stunning, disney concept art, pixar concept art, bloom, medium shot, dramatic lighting, in the style of studio ghibli, JC Leyendecker, Ilya Kuvshinov, Rossdraws, Conrad Roset",
+        "thumbnail_style": ", album cover",
+        "video_disc": "50",
+        "steps": 30, 
+        "length": "full",
+        "categoryId": 10,
+        "captions": false,
+        "tags": "auto",
+        "thumbnail": "",
+        "progress": {"current": 0, "total": 0},
+        "title": "",
+        "fullscreen": true,
+        "fix_faces": false,
+        "sampler": "k_euler_a",
+        "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands",
+        "job_type": "video",
+        "image_zoom": true,
+        "image_zoom_amount": 0.007,
+        "skip_videoplaylist_job": true,
+        "model": "stable_diffusion",
+        "use_trusted_workers": false
+    })
+
 
     function submit_form() {
         //console.log(dispatch(testServerLocal()))
@@ -36,7 +60,30 @@ const VideoForm = () => {
             alert("add a tag")
             return
         }
-        setVideoFromData({"youtube_url": "", "status": "Ready", "styles": "stunning, disney concept art, pixar concept art, bloom, medium shot, dramatic lighting, in the style of studio ghibli, JC Leyendecker, Ilya Kuvshinov, Rossdraws, Conrad Roset","thumbnail_style": ", album cover", "video_disc": "50", "steps": 50, "length": "full", "categoryId": 10, "captions": false, "tags": "auto", "thumbnail": "", "progress": {"current": 0, "total": 0}, "title": "", "fullscreen": true, "fix_faces": false, "sampler": "k_euler_a", "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands", "job_type": "video", "image_zoom": true, "image_zoom_amount": 0.007, "skip_videoplaylist_job": true})
+        setVideoFromData({"youtube_url": "",
+            "status": "Ready",
+            "styles": "stunning, disney concept art, pixar concept art, bloom, medium shot, dramatic lighting, in the style of studio ghibli, JC Leyendecker, Ilya Kuvshinov, Rossdraws, Conrad Roset",
+            "thumbnail_style": ", album cover",
+            "video_disc": "50",
+            "steps": 30, 
+            "length": "full",
+            "categoryId": 10,
+            "captions": false,
+            "tags": "auto",
+            "thumbnail": "",
+            "progress": {"current": 0, "total": 0},
+            "title": "",
+            "fullscreen": true,
+            "fix_faces": false,
+            "sampler": "k_euler_a",
+            "negative_styles": " 3d, disfigured, bad art, deformed, poorly drawn, extra limbs, strange colors, blurry, boring, lackluster, repetitive, cropped, hands",
+            "job_type": "video",
+            "image_zoom": true,
+            "image_zoom_amount": 0.007,
+            "skip_videoplaylist_job": true,
+            "model": "stable_diffusion",
+            "use_trusted_workers": false
+        })
         
         api.createVideo(VideoFromData)
     }
@@ -74,10 +121,29 @@ const VideoForm = () => {
                     </select>
                 </label>
 
+                <label> Worker Type:
+                    <select className=" form_buttons" value={VideoFromData.use_trusted_workers} onChange={(e) => setVideoFromData({ ...VideoFromData, use_trusted_workers: e.target.value })}>
+                        <option value="false">All Workers</option>
+                        <option value="true">Trusted Only</option>
+                    </select>
+                </label>
+
 
                 <label> Sampler:
                     <select className=" form_buttons" value={VideoFromData.sampler} onChange={(e) => setVideoFromData({ ...VideoFromData, sampler: e.target.value })}>
                         <option value="k_euler_a">k_euler_a</option>
+                    </select>
+                </label>
+
+
+                <label> Model:
+                    <select className=" form_buttons" value={VideoFromData.model} onChange={(e) => setVideoFromData({ ...VideoFromData, model: e.target.value })}>
+                        <option value="stable_diffusion">stable_diffusion</option>
+                        <option value="waifu_diffusion">waifu_diffusion</option>
+                        <option value="Anything Diffusion">Anything Diffusion</option>
+                        <option value="Redshift Diffusion">Redshift Diffusion</option>
+                        <option value="Comic-Diffusion">Comic-Diffusion</option>
+                        <option value="Classic Animation Diffusion">Classic Animation Diffusion</option>
                     </select>
                 </label>
 

@@ -23,6 +23,9 @@ const VideoPlaylistSchema = mongoose.Schema({
 
     image_zoom: Boolean,
     image_zoom_amount: Number,
+
+    model: String,
+    use_trusted_workers: Boolean
 })
 
 

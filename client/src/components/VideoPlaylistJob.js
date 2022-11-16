@@ -34,7 +34,7 @@ const VideoPlaylistJob = () => {
         "video_description": "Stable diffusion was used to generate the images.\n\nSong credits:\n\nThis is an Ai interpreted version of the song ",
         "styles": ", stunning, disney concept art, pixar concept art, bloom, medium shot, dramatic lighting, in the style of studio ghibli, JC Leyendecker, Ilya Kuvshinov, Rossdraws, Conrad Roset",
         "thumbnail_style": ", album cover",
-        "steps": 50,
+        "steps": 30,
         "length": "full",
         "categoryId": 10,
         "captions": false,
@@ -47,6 +47,8 @@ const VideoPlaylistJob = () => {
         "job_type": "videoPlaylist",
         "image_zoom": true, 
         "image_zoom_amount": 0.007,
+        "model": "stable_diffusion",
+        "use_trusted_workers": false
         })
 
     function submit_form() {
@@ -85,6 +87,8 @@ const VideoPlaylistJob = () => {
             "job_type": "videoPlaylist",
             "image_zoom": true, 
             "image_zoom_amount": 0.007,
+            "model": "stable_diffusion",
+            "use_trusted_workers": false
             })
         
         api.createVideoPlaylistJob(VideoPlaylistData)
@@ -122,10 +126,29 @@ const VideoPlaylistJob = () => {
                     </select>
                 </label>
 
+                <label> Worker Type:
+                    <select className=" form_buttons" value={VideoPlaylistData.use_trusted_workers} onChange={(e) => setVideoPlaylistData({ ...VideoPlaylistData, use_trusted_workers: e.target.value })}>
+                        <option value="false">All Workers</option>
+                        <option value="true">Trusted Only</option>
+                    </select>
+                </label>
+
 
                 <label> Sampler:
                     <select className=" form_buttons" value={VideoPlaylistData.sampler} onChange={(e) => setVideoPlaylistData({ ...VideoPlaylistData, sampler: e.target.value })}>
                         <option value="k_euler_a">k_euler_a</option>
+                    </select>
+                </label>
+
+
+                <label> Model:
+                    <select className=" form_buttons" value={VideoPlaylistData.model} onChange={(e) => setVideoPlaylistData({ ...VideoPlaylistData, model: e.target.value })}>
+                        <option value="stable_diffusion">stable_diffusion</option>
+                        <option value="waifu_diffusion">waifu_diffusion</option>
+                        <option value="Anything Diffusion">Anything Diffusion</option>
+                        <option value="Redshift Diffusion">Redshift Diffusion</option>
+                        <option value="Comic-Diffusion">Comic-Diffusion</option>
+                        <option value="Classic Animation Diffusion">Classic Animation Diffusion</option>
                     </select>
                 </label>
 
